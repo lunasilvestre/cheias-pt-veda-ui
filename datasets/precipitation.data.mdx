@@ -1,0 +1,60 @@
+---
+id: precipitation-daily
+name: 'Daily Precipitation'
+description: 'Daily accumulated rainfall from ERA5 reanalysis over Portugal, Dec 2025 – Feb 2026.'
+media:
+  src: ::file media/precipitation-cover.png
+  alt: 'Rainfall visualization over Portugal'
+  author:
+    name: ECMWF / Open-Meteo
+    url: https://open-meteo.com/
+taxonomy:
+  - name: Topics
+    values:
+      - Meteorology
+      - Hydrology
+  - name: Source
+    values:
+      - ERA5
+
+layers:
+  - id: precipitation-daily
+    stacCol: precipitation-daily
+    name: Daily Precipitation
+    type: raster
+    description: 'Daily accumulated rainfall (mm/day) from ERA5 reanalysis.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: blues
+      nodata: 0
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - 0
+        - 80
+    legend:
+      type: gradient
+      min: '0 mm'
+      max: '80 mm'
+      stops:
+        - '#f7fbff'
+        - '#deebf7'
+        - '#9ecae1'
+        - '#3182bd'
+        - '#08306b'
+    metadata:
+      source: ECMWF / ERA5
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+Daily accumulated precipitation from the ERA5 reanalysis product. January 2026 delivered 222% of the 1991-2020 average rainfall across Portugal — the 2nd wettest January in the past 26 years.
+
+Storm Kristin (Jan 28-30), Leonardo (Feb 3-7), and Marta (Feb 6-8) each brought 50-100+ mm of rain to already-saturated ground, triggering catastrophic flooding.
+</Prose>
+</Block>

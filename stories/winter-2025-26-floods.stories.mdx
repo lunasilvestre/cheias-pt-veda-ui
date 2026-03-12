@@ -1,0 +1,408 @@
+---
+id: 'winter-2025-26-floods'
+name: 'Winter 2025-26 Portuguese Flood Events'
+description: 'How sequential storms on saturated soils created an unprecedented flood catastrophe across central and southern Portugal.'
+media:
+  src: ::file ./media/floods/hero-cover.png
+  alt: 'Satellite-derived flood extent across Portugal during the February 2026 peak inundation'
+  author:
+    name: 'Copernicus Sentinel-1 SAR'
+    url: 'https://sentinels.copernicus.eu/'
+pubDate: 2026-03-05T00:00
+taxonomy:
+  - name: Topics
+    values:
+      - Flood Monitoring
+      - Climate Change
+      - Emergency Response
+  - name: Subtopics
+    values:
+      - Hydrological Extremes
+      - Portugal
+---
+
+<Block>
+  <Prose>
+
+  ## Winter 2025-26 Portuguese Flood Events: A Compound Disaster
+
+  How sequential storms, saturated soils, and aging infrastructure created the largest water crisis in a generation.
+
+  Between December 31, 2025 and February 8, 2026, Portugal was battered by four major Atlantic windstorms in rapid succession. Each brought rain to already-saturated ground. Each overtopped rivers designed for a climate that no longer exists. When the dust settled, 18 people were dead, 12,000 evacuated, and an estimated 4 billion euros in damage documented. The floods revealed what climate scientists had warned for decades: the old infrastructure assumptions are obsolete.
+
+  This story follows the compound disaster from atmospheric preconditions through peak inundation and into recovery.
+
+  </Prose>
+</Block>
+
+
+<ScrollytellingBlock>
+  <Chapter
+    center={[-5, 38]}
+    zoom={4}
+    datasetId='sst-anomaly'
+    layerId='sst-anomaly'
+    datetime='2026-01-28'
+  >
+    ## Chapter 1: The Atlantic Engine Warms
+
+    In late January 2026, the Atlantic Ocean off Portugal ran 2-3 degrees warmer than the 1991-2020 average. Warm sea surface temperatures act as an engine, evaporating more moisture into the lower atmosphere and fueling stronger wind systems.
+
+    When Storm Kristin developed in the Atlantic mid-latitudes, it drew energy from this anomalous warmth. The atmosphere held 7% more moisture than it would have in a pre-warming climate.
+  </Chapter>
+
+  <Chapter
+    center={[-9.5, 39]}
+    zoom={7}
+    datasetId='soil-moisture-daily'
+    layerId='soil-moisture-daily'
+    datetime='2026-01-27'
+  >
+    ## Soil at Maximum Capacity
+
+    Portugal's soils entered January 2026 already saturated. December and early January had delivered 222% of normal rainfall. Soil moisture in the upper 7 centimeters averaged 0.42 cubic meters per cubic meter, approaching maximum saturation.
+
+    The landscape had no more room for water. Every rain drop from Storm Kristin would flow overland or into rivers. There would be no absorption into groundwater, no delay in runoff. The system was primed for flooding.
+  </Chapter>
+
+  <Chapter
+    center={[-8.5, 39.5]}
+    zoom={5}
+    datasetId='precipitation-daily'
+    layerId='precipitation-daily'
+    datetime='2026-01-28'
+  >
+    ## Atmospheric River Arrives
+
+    Storm Kristin formed part of a larger pattern: an atmospheric river stretching from the tropics to Portugal. Integrated Water Vapor Transport values exceeded 600 kg/m/s in the 2-4 days before landfall, classifying this as an extreme atmospheric river.
+
+    When these moisture corridors encounter topography, all that moisture precipitates in a narrow zone. Portugal experienced extreme rainfall compressed into 24-48 hour windows.
+  </Chapter>
+</ScrollytellingBlock>
+
+
+<Block>
+  <Prose>
+
+  ## Compounding Cascades
+
+  SST anomaly plus saturated soils plus atmospheric river equals compound disaster. Each element alone would be notable. Together, they created a system incapable of handling the moisture arrival. Hydrologists call this compound and cascading flooding, when multiple hazards interact to amplify impacts beyond simple addition.
+
+  By January 27, 2026, all three preconditions were present. Storm Kristin was 24 hours from landfall.
+
+  </Prose>
+</Block>
+
+
+<ScrollytellingBlock>
+  <Chapter
+    center={[-8.5, 40]}
+    zoom={6}
+    datasetId='precipitation-daily'
+    layerId='precipitation-daily'
+    datetime='2026-01-28'
+  >
+    ## Chapter 2: Storm Kristin
+
+    Storm Kristin made landfall in Leiria district on January 28, 2026, evening. Wind gusts reached 209.8 km/h in Soure (Coimbra) — an unprecedented national record — and 156 km/h in Leiria.
+
+    Meteorologically, 209 km/h is extreme hurricane-force wind. Infrastructure designed for 120 km/h (the pre-climate-change standard) failed catastrophically.
+  </Chapter>
+
+  <Chapter
+    center={[-9.2, 38.8]}
+    zoom={8}
+    datasetId='precipitation-daily'
+    layerId='precipitation-daily'
+    datetime='2026-01-30'
+  >
+    ## Rainfall Follows Wind
+
+    Wind damage was immediate (24-48 hours). Rainfall persisted for 2-3 days, delivering 50-100+ mm across central Portugal. Because soils were saturated, this rain ran off directly into rivers.
+
+    The Mondego, Tejo, Vouga, and Sado all responded rapidly to upstream rainfall. River levels began rising on January 28 and climbed through January 30.
+  </Chapter>
+
+  <Chapter
+    center={[-9.2, 38.8]}
+    zoom={8}
+    datasetId='discharge-timeseries'
+    layerId='discharge-tejo'
+    datetime='2026-01-30'
+  >
+    ## Tejo River Peaks (First Time)
+
+    By January 30, Tejo river discharge reached 3,706 cubic meters per second at Vila Franca de Xira. Design capacity for managed flood risk is approximately 2,000 cubic meters per second. This peak exceeded design by 85%.
+
+    Orange alert levels were activated. Municipalities along the Leziria do Tejo floodplain prepared evacuation shelters and sandbagging operations.
+  </Chapter>
+</ScrollytellingBlock>
+
+
+<Block type='wide'>
+  <Figure>
+    <Chart
+      dataPath={new URL('./discharge-timeseries.csv', import.meta.url).href}
+      idKey='Station'
+      xKey='Date'
+      yKey='Discharge_m3s'
+      dateFormat='%Y-%m-%d'
+    />
+    <Caption
+      attrAuthor='SNIRH (Sistema Nacional de Informacao de Recursos Hidricos)'
+      attrUrl='https://www.snirh.inescporto.pt/'
+    >
+      Tejo river hydrograph (Vila Franca de Xira gauge): Successive peaks correspond to Kristin (Jan 30), Leonardo (Feb 7), and Marta (Feb 8). Design capacity of 2,000 m3/s exceeded for 10+ days.
+    </Caption>
+  </Figure>
+</Block>
+
+
+<Block>
+  <Prose>
+
+  ## Chapter 3: Human Cost of Kristin
+
+  Storm Kristin killed 14 people in Portugal (6 direct, 8 indirect). Direct causes included falling trees (4 deaths), a woman swept away by floodwater in Algarve (1 death), and structural collapse (1 death). Indirect causes included carbon monoxide poisoning from generators during power outages (2 deaths), recovery operation accidents (5 deaths), and one mental health crisis.
+
+  One million people lost power out of Portugal's 10.5 million population. Power outages lasted 5-15 days in worst-affected regions. Hospitals, water treatment plants, and emergency services shifted to backup generators. Kristin alone caused an estimated 2+ billion euros in damage.
+
+  </Prose>
+</Block>
+
+
+<ScrollytellingBlock>
+  <Chapter
+    center={[-9.5, 39]}
+    zoom={7}
+    datasetId='precipitation-daily'
+    layerId='precipitation-daily'
+    datetime='2026-02-03'
+  >
+    ## Chapter 4: Storm Leonardo
+
+    Storm Leonardo formed on February 2, 2026, and made landfall on February 3. Unlike Kristin's dramatic wind event, Leonardo brought persistent heavy rainfall lasting 3-4 days.
+
+    Rainfall rates were moderate (20-40 mm/day), not extreme. But the duration mattered. Three consecutive days of rain on soils already saturated from Kristin meant every drop flowed into rivers. There was no time for rivers to recede between storms.
+  </Chapter>
+
+  <Chapter
+    center={[-9.2, 38.8]}
+    zoom={8}
+    datasetId='discharge-timeseries'
+    layerId='discharge-tejo'
+    datetime='2026-02-07'
+  >
+    ## Tejo Reaches Maximum
+
+    As Leonardo's rainfall persisted, the Tejo climbed again. Spanish dam operators released stored water downstream to prevent dam overtopping, adding to Portuguese inflows.
+
+    On February 7, 2026, Tejo discharge reached 6,775 cubic meters per second — the second-highest peak in modern records. Design capacity exceeded by 238%.
+
+    By traditional hydrology standards this is a 1-in-100+ year event. In a warming climate, it will become a 1-in-30 year event by 2050.
+  </Chapter>
+
+  <Chapter
+    center={[-8.9, 38.7]}
+    zoom={9}
+    datasetId='flood-extent-emsr864'
+    layerId='flood-extent-emsr864'
+    datetime='2026-02-08'
+  >
+    ## The Floodplain Inundates
+
+    By February 8, the Leziria do Tejo floodplain was underwater across an area of 226,764 hectares. Salvaterra de Magos alone accounted for 49,164 hectares — an area larger than the city of Lisbon.
+
+    Agricultural fields (rice, vegetables, fruit trees) were submerged. Infrastructure critical for the region's economy (irrigation systems, access roads, bridges) was damaged or destroyed. Thousands of cattle and other livestock perished.
+  </Chapter>
+
+  <Chapter
+    center={[-9.0, 38.5]}
+    zoom={7}
+    datasetId='flood-extent-emsr864'
+    layerId='flood-extent-emsr864'
+    datetime='2026-02-08'
+  >
+    ## Evacuations Begin
+
+    By February 6, state and local authorities ordered evacuations from low-lying areas. Over 1,100 Portuguese residents were evacuated from municipalities including Alcacer do Sal, Leiria, and surrounding zones.
+
+    These were not brief evacuations. Residents sheltered in schools and emergency centers for 1-2 weeks, unsure when they could return home.
+  </Chapter>
+</ScrollytellingBlock>
+
+
+<Block>
+  <Prose>
+
+  ## The Dike Rupture
+
+  On February 11, 2026, a critical section of the Mondego River dike near Casais ruptured. Discharge exceeded 2,100 cubic meters per second — the design capacity set in 1986 for a climate and development baseline that no longer applies.
+
+  The breach inundated agricultural lands immediately downstream and forced evacuation of 3,000 residents from Coimbra neighborhoods. This rupture revealed a systemic infrastructure crisis: dikes built 40 years ago cannot handle current climate extremes.
+
+  </Prose>
+</Block>
+
+
+<Block>
+  <Prose>
+
+  ## Chapter 5: The A1 Motorway Collapse
+
+  The A1 motorway collapse on February 12, 2026 symbolized everything wrong with Portugal's climate adaptation response: infrastructure designed for a climate that no longer exists.
+
+  The pillar failure occurred in the Mondego floodplain near Coimbra, just hours after the dike rupture. Floodwaters undercut the bridge foundation. A single pillar failed. The entire northbound lane collapsed into the floodplain.
+
+  Portugal's primary north-south highway (Lisbon to Porto) was closed. Supply chains were crippled. Emergency vehicles faced 2-3 hour detours. Repairs were estimated at 200+ million euros and several months of closure.
+
+  </Prose>
+</Block>
+
+
+<Block>
+  <Prose>
+
+  ## Chapter 6: Storm Marta
+
+  Storm Marta arrived on February 6-8, 2026, just as Leonardo was receding. Marta brought additional rainfall (60+ mm in 24 hours in southern mountain areas), strong winds (up to 120 km/h), and rough seas (waves up to 13 meters).
+
+  By February 8, Portugal had deployed 26,500 rescue personnel — one of the largest emergency mobilizations in recent Portuguese history. Three municipalities postponed Sunday elections because emergency response took priority over voting.
+
+  </Prose>
+</Block>
+
+
+<Block type='wide'>
+  <Figure>
+    <Chart
+      dataPath={new URL('./fatality-timeline.csv', import.meta.url).href}
+      idKey='Event'
+      xKey='Date'
+      yKey='Cumulative'
+      dateFormat='%Y-%m-%d'
+    />
+    <Caption>
+      Cumulative fatalities across three storms: 18 confirmed deaths. Direct causes (falling trees, water, structural collapse) dominated Kristin. Indirect causes (recovery operations, CO poisoning) spread across all three storms.
+    </Caption>
+  </Figure>
+</Block>
+
+
+<ScrollytellingBlock>
+  <Chapter
+    center={[-8.9, 38.7]}
+    zoom={9}
+    datasetId='flood-extent-emsr864'
+    layerId='flood-extent-emsr864'
+    datetime='2026-02-08'
+  >
+    ## Chapter 7: Peak Flood Extent
+
+    The Copernicus Emergency Management Service (EMSR864) activation provided satellite imagery of unprecedented detail. Multiple Sentinel-1 SAR acquisitions between February 3-16 captured flood extent across 13 Portuguese areas of interest.
+
+    SAR is ideal for flood monitoring because radar penetrates clouds. Unlike optical sensors, SAR can see through rain, enabling near-daily monitoring during the flooded period. EMSR864 delineated 226,764 hectares of inundation.
+  </Chapter>
+
+  <Chapter
+    center={[-8.9, 38.7]}
+    zoom={10}
+    datasetId='flood-extent-emsr864'
+    layerId='flood-extent-emsr864'
+    datetime='2026-02-08'
+  >
+    ## Salvaterra de Magos
+
+    The most extensive inundation occurred in the Salvaterra de Magos region. Peak extent reached 49,164 hectares on February 8 — a single municipality accounting for 21% of total mapped inundation.
+
+    Flat topography means water spreads broadly rather than concentrating in channels. Peak inundation lasted 1-2 weeks. By February 21, water had receded substantially, but damage assessment continued for months.
+  </Chapter>
+
+  <Chapter
+    center={[-8.5, 40.5]}
+    zoom={9}
+    datasetId='flood-extent-emsr864'
+    layerId='flood-extent-emsr864'
+    datetime='2026-02-08'
+  >
+    ## Mondego Valley Dike Breach
+
+    In the Mondego Valley, the February 11 dike rupture created a secondary flood beyond initial river banks. Satellite imagery captured the rapid inundation progression.
+
+    Repairs to the Casais dike and neighboring Granja do Ulmeiro rupture were estimated to take weeks to months, creating ongoing seepage risk.
+  </Chapter>
+
+  <Chapter
+    center={[-8.5, 38.5]}
+    zoom={8}
+    datasetId='flood-extent-emsr864'
+    layerId='flood-extent-emsr864'
+    datetime='2026-02-08'
+  >
+    ## Cascading Impacts Across Basins
+
+    While Tejo dominated in extent, other basins also experienced significant flooding. Mondego had dike ruptures and secondary inundation. Sado flooded with 2m water rise in 20 minutes at Alcacer do Sal. Douro burst banks in Porto and Vila Nova de Gaia. No single basin escaped impact.
+  </Chapter>
+</ScrollytellingBlock>
+
+
+<Block>
+  <Prose>
+
+  ## Chapter 8: The Climate Change Fingerprint
+
+  Climate change made this disaster more severe and more frequent. An international team of climate scientists (World Weather Attribution) analyzed the 2025-26 winter rainfall and found:
+
+  Human-caused climate change increased rainfall intensity by 11% in northern Portugal and 36% in southern Portugal for extreme one-day rainfall events. Storm Leonardo's one-day rainfall totals are now classified as once-in-a-century events under current climate. Without climate change, such totals would be once-in-200-year events.
+
+  Coimbra city recorded 1,238 mm of rainfall from October 1, 2025 to February 16, 2026 — the wettest October-February period in the modern instrumental record.
+
+  </Prose>
+</Block>
+
+
+<Block>
+  <Prose>
+
+  ## Chapter 9: Recovery and Reconstruction
+
+  By February 21, 2026, river levels dropped rapidly. The acute crisis phase was ending, but recovery was just beginning.
+
+  Thousands of homes were damaged. Approximately 69 municipalities were under state of calamity declaration. The A1 motorway was out of service for weeks. The Portuguese government announced a 2.5 billion euro emergency support package including housing reconstruction, agricultural relief (750M estimated crop/forestry losses), and infrastructure repair.
+
+  </Prose>
+</Block>
+
+
+<Block>
+  <Prose>
+
+  ## Epilogue: The New Baseline
+
+  What changed permanently: infrastructure design standards from the 1980s are now recognized as obsolete. Investment in real-time monitoring systems became urgent. Floodplain development restrictions were tightened. EU climate adaptation funding flowed to Portugal for wetland restoration, upstream retention basins, and natural flood management.
+
+  18 people died. 12,000 were evacuated. 4 billion euros in damage documented. A motorway collapsed. None of this was inevitable. With proper infrastructure design for current climate, with restored wetlands and upstream water retention, casualties and damage could have been cut in half or more.
+
+  Portugal faces 30-40 more years of similar winter storms as climate change intensifies. The nation can adapt, or it can suffer repeated 2026-scale catastrophes. This story documents that choice moment.
+
+  </Prose>
+</Block>
+
+
+<Block>
+  <Prose>
+
+  ## Data Sources
+
+  **Satellite:** Copernicus Sentinel-1 SAR (EMSR861 & EMSR864), Sentinel-2 L2A (CC-BY-4.0)
+
+  **Hydrological:** SNIRH real-time discharge, GloFAS (public domain)
+
+  **Meteorological:** Open-Meteo ERA5/ERA5-Land, NOAA OISST v2.1, IPMA
+
+  **Policy:** World Weather Attribution climate attribution study, Portuguese Government emergency declarations
+
+  **Story compiled:** March 5, 2026 | **Platform:** VEDA Dashboard with COG rasters and PMTiles vectors
+
+  </Prose>
+</Block>

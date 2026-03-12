@@ -1,0 +1,62 @@
+---
+id: flood-extent-emsr864
+name: 'Flood Extent (CEMS Rapid Mapping)'
+description: 'Observed flood polygons from Copernicus Emergency Management Service activations EMSR861 & EMSR864 across Portugal, Jan-Feb 2026.'
+media:
+  src: ::file media/flood-extent-cover.png
+  alt: 'Flooded areas mapped by Copernicus EMS across central Portugal'
+  author:
+    name: Copernicus EMS
+    url: https://emergency.copernicus.eu/
+taxonomy:
+  - name: Topics
+    values:
+      - Flood Monitoring
+      - Emergency Response
+  - name: Source
+    values:
+      - Sentinel-1 SAR
+
+layers:
+  - id: flood-extent-emsr864
+    stacCol: flood-extent-emsr864
+    name: Combined EMSR861 & EMSR864 Flood Extent
+    type: raster
+    description: '226,764 hectares of mapped inundation across 13 Portuguese areas of interest.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: blues
+      nodata: 0
+      resampling: nearest
+      bidx: 1
+      rescale:
+        - 0
+        - 1
+    legend:
+      type: categorical
+      stops:
+        - color: '#2471a3'
+          label: 'Flooded Area'
+    compare:
+      datasetId: flood-extent-emsr864
+      layerId: flood-extent-emsr864
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+        return `${dateFns.format(datetime, 'LLL dd, yyyy')} VS ${dateFns.format(compareDatetime, 'LLL dd, yyyy')}`;
+        }
+    metadata:
+      source: Copernicus EMS / Sentinel-1 SAR
+---
+
+<Block>
+<Prose>
+## Rapid Flood Mapping
+
+Within hours of major flooding, the Copernicus Emergency Management Service deploys satellite imagery analysts to map the extent of affected areas. These maps guide emergency response and recovery planning.
+
+The EMSR861 and EMSR864 activations covered 13 areas of interest across Portugal during the January-February 2026 storm sequence, mapping a total of 226,764 hectares of inundation.
+</Prose>
+</Block>

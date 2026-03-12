@@ -1,0 +1,60 @@
+---
+id: sst-anomaly
+name: 'Sea Surface Temperature Anomaly'
+description: 'Atlantic SST anomaly vs 1991-2020 baseline from NOAA OISST v2.1. Warm waters fueled the storm sequence.'
+media:
+  src: ::file media/sst-cover.png
+  alt: 'Sea surface temperature anomaly in the Atlantic'
+  author:
+    name: NOAA OISST
+    url: https://www.ncei.noaa.gov/products/optimum-interpolation-sst
+taxonomy:
+  - name: Topics
+    values:
+      - Climate Change
+      - Meteorology
+  - name: Source
+    values:
+      - NOAA OISST
+
+layers:
+  - id: sst-anomaly
+    stacCol: sst-anomaly
+    name: SST Anomaly (vs 1991-2020)
+    type: raster
+    description: 'Sea surface temperature departure from 1991-2020 climatology.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: rdbu_r
+      nodata: -9999
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - -3
+        - 3
+    legend:
+      type: gradient
+      min: '-3 C'
+      max: '+3 C'
+      stops:
+        - '#2166ac'
+        - '#67a9cf'
+        - '#f7f7f7'
+        - '#ef8a62'
+        - '#b2182b'
+    metadata:
+      source: NOAA OISST v2.1
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+Sea surface temperatures off Portugal in late January 2026 were 2-3 C warmer than the 1991-2020 average. Warm ocean waters evaporate more moisture into the atmosphere, fueling stronger storms and heavier rainfall.
+
+When Storm Kristin developed over these anomalously warm waters, the atmosphere carried approximately 7% more moisture than it would have in a pre-warming climate.
+</Prose>
+</Block>

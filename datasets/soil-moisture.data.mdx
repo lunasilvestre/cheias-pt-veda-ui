@@ -1,0 +1,60 @@
+---
+id: soil-moisture-daily
+name: 'Soil Moisture'
+description: 'Daily volumetric water content (0-7 cm) from ERA5-Land reanalysis over Portugal.'
+media:
+  src: ::file media/soil-moisture-cover.png
+  alt: 'Soil moisture visualization over Portugal'
+  author:
+    name: Open-Meteo / ERA5-Land
+    url: https://open-meteo.com/
+taxonomy:
+  - name: Topics
+    values:
+      - Hydrology
+      - Flood Risk
+  - name: Source
+    values:
+      - ERA5-Land
+
+layers:
+  - id: soil-moisture-daily
+    stacCol: soil-moisture-daily
+    name: Soil Moisture (0-7 cm)
+    type: raster
+    description: 'Daily volumetric water content in the top 7 cm soil layer.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: viridis
+      nodata: -9999
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - 0.05
+        - 0.50
+    legend:
+      type: gradient
+      min: 'Dry (0.05)'
+      max: 'Saturated (0.50)'
+      stops:
+        - '#f5e6d3'
+        - '#a6611a'
+        - '#7fb3d5'
+        - '#1b4965'
+        - '#0a2840'
+    metadata:
+      source: Open-Meteo / ERA5-Land
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+Soil moisture is a critical precursor to flooding. When soils are already saturated and rain is forecasted, flood risk increases dramatically because rainfall flows overland directly into rivers rather than being absorbed.
+
+Portugal's soils entered January 2026 already near saturation (0.42 m3/m3 average) after December delivered 222% of normal rainfall. This left the landscape primed for catastrophic flooding.
+</Prose>
+</Block>

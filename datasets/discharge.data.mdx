@@ -1,0 +1,61 @@
+---
+id: discharge-timeseries
+name: 'River Discharge'
+description: 'Daily river discharge from SNIRH gauge stations and GloFAS reanalysis for major Portuguese basins.'
+media:
+  src: ::file media/discharge-cover.png
+  alt: 'River discharge hydrograph'
+  author:
+    name: SNIRH / GloFAS
+    url: https://www.snirh.inescporto.pt/
+taxonomy:
+  - name: Topics
+    values:
+      - Hydrology
+      - Flood Monitoring
+  - name: Source
+    values:
+      - SNIRH
+      - GloFAS
+
+layers:
+  - id: discharge-tejo
+    stacCol: discharge-tejo
+    name: Tejo River Discharge
+    type: raster
+    description: 'Tejo river discharge at Vila Franca de Xira gauge.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: cool
+      nodata: 0
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - 0
+        - 7000
+    legend:
+      type: gradient
+      min: '0 m3/s'
+      max: '7000 m3/s'
+      stops:
+        - '#e0f3f8'
+        - '#91bfdb'
+        - '#4575b4'
+        - '#313695'
+        - '#0d0887'
+    metadata:
+      source: SNIRH / GloFAS
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+River discharge measurements from the Portuguese national hydrological monitoring network (SNIRH) and the Global Flood Awareness System (GloFAS).
+
+The Tejo river peaked at 6,775 m3/s on February 7, 2026 — exceeding its 2,000 m3/s design capacity by 238%. This was one of the highest discharges in modern records.
+</Prose>
+</Block>
