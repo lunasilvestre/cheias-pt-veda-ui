@@ -1,0 +1,60 @@
+---
+id: precondition
+name: 'Compound Flood Precondition Index'
+description: 'Composite index combining SST anomaly, soil saturation, and atmospheric moisture to indicate compound flood risk.'
+media:
+  src: ::file media/precondition-cover.png
+  alt: 'Compound flood precondition index over Portugal'
+  author:
+    name: cheias.pt
+    url: https://cheias.pt
+taxonomy:
+  - name: Topics
+    values:
+      - Flood Risk
+      - Climate Change
+  - name: Source
+    values:
+      - cheias.pt
+
+layers:
+  - id: precondition
+    stacCol: precondition
+    name: Compound Flood Precondition
+    type: raster
+    description: 'Composite index combining SST anomaly, soil saturation, and atmospheric moisture — higher values indicate greater compound flood risk.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: rdbu_r
+      nodata: -9999
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - 0
+        - 113
+    legend:
+      type: gradient
+      min: 'Low Risk (0)'
+      max: 'Extreme (113)'
+      stops:
+        - '#2166ac'
+        - '#67a9cf'
+        - '#f7f7f7'
+        - '#ef8a62'
+        - '#b2182b'
+    metadata:
+      source: cheias.pt analysis
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+The compound flood precondition index combines three drivers that must align for catastrophic flooding: warm sea surface temperatures (fuelling moisture), saturated soils (reducing infiltration), and atmospheric river activity (delivering rainfall).
+
+By late January 2026, all three indicators were simultaneously at extreme levels across Portugal — a convergence that made the subsequent flooding nearly inevitable once Storm Kristin arrived.
+</Prose>
+</Block>

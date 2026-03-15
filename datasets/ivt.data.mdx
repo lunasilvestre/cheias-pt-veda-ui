@@ -1,0 +1,60 @@
+---
+id: ivt
+name: 'Integrated Water Vapour Transport (IVT)'
+description: 'Atmospheric river proxy — total column water vapour transport magnitude from ERA5, Dec 2025 – Feb 2026.'
+media:
+  src: ::file media/ivt-cover.png
+  alt: 'Atmospheric river water vapour transport over the North Atlantic'
+  author:
+    name: ECMWF / ERA5
+    url: https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5
+taxonomy:
+  - name: Topics
+    values:
+      - Meteorology
+      - Atmospheric Rivers
+  - name: Source
+    values:
+      - ERA5
+
+layers:
+  - id: ivt
+    stacCol: ivt
+    name: Integrated Vapour Transport
+    type: raster
+    description: 'Total column water vapour transport magnitude (kg/m/s) — atmospheric river indicator.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: plasma
+      nodata: 0
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - 0
+        - 800
+    legend:
+      type: gradient
+      min: '0 kg/m/s'
+      max: '800 kg/m/s'
+      stops:
+        - '#0d0887'
+        - '#7e03a8'
+        - '#cc4778'
+        - '#f89540'
+        - '#f0f921'
+    metadata:
+      source: ECMWF / ERA5
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+Integrated Water Vapour Transport (IVT) measures the total amount of moisture flowing through the atmosphere. Values above 250 kg/m/s typically indicate an atmospheric river — a narrow corridor of concentrated moisture that can deliver extreme precipitation when it makes landfall.
+
+Storm Kristin rode an atmospheric river that peaked above 700 kg/m/s as it struck Portugal on January 28, 2026, funnelling tropical moisture directly into the Iberian Peninsula.
+</Prose>
+</Block>

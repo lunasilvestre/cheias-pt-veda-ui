@@ -1,0 +1,59 @@
+---
+id: mslp
+name: 'Mean Sea Level Pressure'
+description: 'Mean sea level pressure from ERA5 reanalysis over the North Atlantic, Dec 2025 – Feb 2026.'
+media:
+  src: ::file media/mslp-cover.png
+  alt: 'Mean sea level pressure contours over the North Atlantic'
+  author:
+    name: ECMWF / ERA5
+    url: https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5
+taxonomy:
+  - name: Topics
+    values:
+      - Meteorology
+  - name: Source
+    values:
+      - ERA5
+
+layers:
+  - id: mslp
+    stacCol: mslp
+    name: Mean Sea Level Pressure
+    type: raster
+    description: 'Mean sea level pressure (hPa) — low-pressure centres drive storm intensity.'
+    initialDatetime: newest
+    zoomExtent:
+      - 0
+      - 20
+    sourceParams:
+      colormap_name: rdbu
+      nodata: -9999
+      resampling: bilinear
+      bidx: 1
+      rescale:
+        - 970
+        - 1040
+    legend:
+      type: gradient
+      min: '970 hPa'
+      max: '1040 hPa'
+      stops:
+        - '#b2182b'
+        - '#ef8a62'
+        - '#f7f7f7'
+        - '#67a9cf'
+        - '#2166ac'
+    metadata:
+      source: ECMWF / ERA5
+---
+
+<Block>
+<Prose>
+## About This Dataset
+
+Mean sea level pressure (MSLP) reveals the position and intensity of storm systems. Deep low-pressure centres — below 980 hPa — indicate powerful cyclones capable of driving extreme wind and rainfall.
+
+During the Winter 2025-26 crisis, three successive storms (Kristin, Leonardo, Marta) tracked across the North Atlantic with central pressures below 985 hPa, each steering moisture-laden air directly onto Portugal.
+</Prose>
+</Block>
