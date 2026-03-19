@@ -110,6 +110,24 @@ datasets/flood-extent.data.mdx      ← placeholder (no STAC collection yet)
 | storm-comparison.csv | Data | Markdown table (NOT Table component) |
 | rainfall-anomaly.csv | Data | Reference |
 
+### Flood Extent Data (`~/Documents/dev/cheias-pt/data/flood-extent/`)
+
+| File | Size | Features | Description |
+|------|------|----------|-------------|
+| `emsr861.geojson` | 2.3 MB | 506 | Storm Kristin, Coimbra region |
+| `emsr864.geojson` | 120 MB | 14,747 | Storm Leonardo/Marta, 13 AOIs nationwide |
+| `combined.geojson` | 122 MB | 15,253 | EMSR861 + EMSR864 merged (226,764 ha total) |
+| `combined.pmtiles` | 17 MB | — | Vector tiles z4-z14 for MapLibre |
+| `emsr864.pmtiles` | 16 MB | — | EMSR864 only, vector tiles |
+| `emsr861.pmtiles` | 458 KB | — | EMSR861 only, vector tiles |
+| `salvaterra_temporal.pmtiles` | 6.4 MB | — | 3-date animation (Feb 6/7/8) |
+| `combined.parquet` | 22 MB | — | Geoparquet format |
+
+**PostGIS status:**
+- `public.flood_extent_emsr861` ✅ loaded (506 features)
+- `public.flood_extent_emsr864` — NOT yet loaded (14,747 features, 120 MB GeoJSON)
+- Load command: `ogr2ogr -f PostgreSQL "PG:$DATABASE_URL" emsr864.geojson -nln flood_extent_emsr864 -overwrite -lco GEOMETRY_NAME=geom -t_srs EPSG:4326`
+
 ### Sentinel-2 Before/After (needs JPEG conversion)
 
 Source GeoTIFFs at `~/Documents/dev/cheias-pt/data/sentinel-2/`:
