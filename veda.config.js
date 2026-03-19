@@ -1,42 +1,25 @@
-const dataCatalogNavItem = {
-  id: "data-catalog",
-  title: "Data Catalog",
-  to: "/data-catalog",
-  type: "internalLink",
-};
-
-const storiesNavItem = {
-  id: "stories",
-  title: "Stories",
-  to: "/stories",
-  type: "internalLink",
-};
-
-const explorationNavItem = {
-  id: "exploration",
-  title: "Exploration",
-  to: "/exploration",
-  type: "internalLink",
-};
-
-let headerNavItems = [dataCatalogNavItem, explorationNavItem, storiesNavItem];
-
 module.exports = {
   datasets: "./datasets/*.data.mdx",
   stories: "./stories/*.stories.mdx",
 
   pageOverrides: {
     aboutContent: "./overrides/about.mdx",
+    headerBrand: "./overrides/header-brand/index.mdx",
+    pageFooter: "./overrides/page-footer/index.mdx",
   },
 
   strings: {
     stories: {
-      one: "Data Story",
-      other: "Data Stories",
+      one: "Story",
+      other: "Stories",
     },
   },
 
   navItems: {
-    headerNavItems: headerNavItems,
+    headerNavItems: [
+      { id: "data-catalog", title: "Data Catalog", to: "/data-catalog", type: "internalLink" },
+      { id: "exploration", title: "Exploration", to: "/exploration", type: "internalLink" },
+      { id: "stories", title: "Stories", to: "/stories", type: "internalLink" },
+    ],
   },
 };
