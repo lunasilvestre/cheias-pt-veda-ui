@@ -4,6 +4,7 @@ module.exports = {
 
   pageOverrides: {
     aboutContent: "./overrides/about.mdx",
+    homeContent: "./overrides/home.mdx",
     headerBrand: "./overrides/header-brand/index.mdx",
     pageFooter: "./overrides/page-footer/index.mdx",
   },

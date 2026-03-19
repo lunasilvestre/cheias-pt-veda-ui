@@ -1,0 +1,12 @@
+{
+  "buildCommand": "yarn --ignore-engines && yarn --ignore-engines build",
+  "outputDirectory": "dist",
+  "installCommand": "yarn --ignore-engines",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/stories/winter-2025-26-floods",
+      "permanent": false
+    }
+  ]
+}
