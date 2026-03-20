@@ -1,7 +1,7 @@
 {
   "buildCommand": "yarn --ignore-engines && yarn --ignore-engines build",
   "outputDirectory": "dist",
-  "installCommand": "yarn --ignore-engines",
+  "installCommand": "yarn --ignore-engines && cd .veda/ui && yarn --ignore-engines && cd ../..",
   "redirects": [
     {
       "source": "/",
