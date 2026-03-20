@@ -79,7 +79,7 @@ taxonomy:
   >
     ### No Room for Water
 
-    Portugal's soils entered January already saturated. December and early January had delivered 222% of normal rainfall. Soil moisture in the upper 7 cm averaged 0.42 m³/m³ — approaching maximum capacity. Every drop from Kristin would flow overland. No absorption, no delay. The system was primed.
+    Portugal's soils entered January already saturated — the red zones on the map. December and early January had delivered 222% of normal rainfall. Soil moisture in the upper 7 cm averaged 0.42 m³/m³ — approaching maximum capacity. Green means dry ground that absorbs rain. Red means saturated ground where every drop flows overland. By late January, almost all of Portugal was red.
   </Chapter>
 
   <Chapter
@@ -99,44 +99,54 @@ taxonomy:
 
 ## Before vs. After: The Ground Saturates
 
-<Block type='full'>
+<Block>
+  <Prose>
+  By mid-December 2025, Portugal's soils were already wetter than normal. Six weeks later, after four storms, the landscape was fully saturated. Drag the slider to see the transformation: green (dry, healthy capacity) turns to red (saturated, zero absorption). Every drop of rain after this point flowed directly into rivers.
+  </Prose>
+</Block>
+
+<Block type='wide'>
   <Figure>
     <Map
       datasetId='soil-moisture-daily'
       layerId='soil-moisture-daily'
       dateTime='2025-12-15'
       compareDateTime='2026-02-08'
-      compareLabel='Baseline (Dec 15) vs Peak Flood (Feb 8)'
-      zoom={6}
-      center={[-8, 39.5]}
+      compareLabel='Dec 15 (before storms) vs Feb 8 (peak flood)'
+      zoom={7}
+      center={[-8.5, 39.5]}
     />
     <Caption
       attrAuthor='ERA5-Land / Open-Meteo'
       attrUrl='https://open-meteo.com/'
     >
-      Soil moisture comparison: December 15 (pre-storm baseline) vs February 8 (peak flood). The dramatic shift from dry to saturated across the Tejo and Mondego basins shows why every raindrop became runoff.
+      Left: December 15, pre-storm baseline — soils at normal winter capacity (green). Right: February 8, after four storms — fully saturated across the Tejo and Mondego basins (red). The shift from green to red is the shift from a landscape that absorbs rain to one that channels it straight into rivers.
     </Caption>
   </Figure>
 </Block>
-<Block type='full'>
+
+<Block>
   <Prose>
-  Two storms, different signatures: Kristin (Jan 28) brought intense wind-driven rainfall concentrated in Leiria/Coimbra. Leonardo (Feb 6) spread persistent rain across the entire Tejo basin. Together they kept rivers elevated for 10+ consecutive days.
+  The rainfall itself told two different stories. Storm Kristin on January 28 hit like a firehose — 50–100 mm concentrated on Leiria and Coimbra in 24 hours, driven by 200+ km/h winds. Storm Leonardo arrived a week later with a different character: slower, broader, persistent. It spread rain across the entire Tejo catchment for four consecutive days. Together, they kept rivers above flood stage for over 10 days.
   </Prose>
+</Block>
+
+<Block type='wide'>
   <Figure>
     <Map
       datasetId='precipitation-daily'
       layerId='precipitation-daily'
       dateTime='2026-01-28'
       compareDateTime='2026-02-06'
-      compareLabel='Kristin (Jan 28) vs Leonardo (Feb 6)'
+      compareLabel='Storm Kristin (Jan 28) vs Storm Leonardo (Feb 6)'
       zoom={7}
-      center={[-9, 40.5]}
+      center={[-8.5, 39.5]}
     />
     <Caption
       attrAuthor='ERA5 / Open-Meteo'
       attrUrl='https://open-meteo.com/'
     >
-      Two storms, different signatures: Kristin (Jan 28) brought intense wind-driven rainfall concentrated in Leiria/Coimbra. Leonardo (Feb 6) spread persistent rain across the entire Tejo basin. Together they kept rivers elevated for 10+ consecutive days.
+      Left: Kristin's rainfall — intense, localized over Leiria/Coimbra. Right: Leonardo's rainfall — widespread across the Tejo basin. The compound effect was devastating: rivers never dropped between storms.
     </Caption>
   </Figure>
 </Block>
