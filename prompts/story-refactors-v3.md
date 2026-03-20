@@ -46,31 +46,49 @@ This is the opposite of what was previously assumed.
 
 ---
 
-## Bug 1: Precipitation — nodata=0 Makes Zero-Rainfall Transparent
+## Bug 1: Precipitation — Ocean/Spain Render as White Instead of Transparent
 
-**Symptom:** In the precipitation compare map and scrollytelling chapter, areas
-with 0 mm rainfall are fully transparent (showing basemap through), so most
-of Portugal disappears on dry days. Only rainy patches are visible.
+**Symptom:** In the precipitation scrollytelling chapter and compare maps,
+Portugal shows correct light-blue precipitation gradient — but the ocean
+and Spain render as opaque white instead of being transparent. The white
+rectangle of the COG's bounding box is visible against the basemap.
 
-**Root cause:** `datasets/precipitation.data.mdx` has `nodata: 0` in sourceParams.
-Combined with `return_mask: true`, TiTiler masks every pixel where value == 0.
-But 0 mm is valid data (no rain), not nodata.
+**Root cause:** The COGs cover a rectangular bounding box that includes
+ocean and Spain. Pixels outside Portugal's data area have a nodata value,
+but the `nodata` in `sourceParams` may not match the COG's actual nodata.
+If mismatched, TiTiler renders those pixels using the colormap (value 0 →
+lightest blue ≈ white) instead of masking them as transparent.
 
-**Investigation needed:** Check what nodata value the COGs actually use:
+Currently `datasets/precipitation.data.mdx` has `nodata: 0` — but 0 mm
+is valid data (no rain), so either:
+- The COG uses a different nodata sentinel (NaN, -9999) for ocean/Spain
+- OR the COG genuinely uses 0 for both "no rain" and "no data"
+
+**Investigation needed:** Check actual nodata in the COGs:
 ```bash
-# Check a precipitation COG's internal nodata
-gdalinfo /path/to/precipitation/2026-01-28.tif | grep -i nodata
-# OR via titiler:
-curl "https://api.cheias.pt/raster/cog/statistics?url=https://data.cheias.pt/precipitation/2026-01-28.tif"
+# Local COG inspection (preferred — fast and definitive)
+gdalinfo ~/Documents/dev/cheias-pt/data/precipitation/2026-01-28.tif 2>/dev/null | grep -i nodata
+
+# If no local file, use rasterio:
+python3 -c "
+import rasterio, numpy as np
+with rasterio.open('/home/nls/Documents/dev/cheias-pt/data/precipitation/2026-01-28.tif') as src:
+    print(f'nodata={src.nodata}, dtype={src.dtypes[0]}')
+    data = src.read(1)
+    print(f'min={np.nanmin(data):.4f}, max={np.nanmax(data):.4f}')
+    print(f'zeros={np.sum(data==0)}, nans={np.sum(np.isnan(data))}')
+"
 ```
 
-**Fix options (pick based on COG inspection):**
-A) If COGs use NaN as internal nodata: change `nodata: nan` in sourceParams
-B) If COGs use a sentinel value (e.g. -9999): change `nodata: -9999` in sourceParams
-C) If COGs have 0 as nodata in their metadata and that can't change:
-   remove `return_mask: true` so 0 renders as the lightest color
-D) Nuclear option: re-process COGs with `--nodata nan` flag in the
-   `cheias-pt-stac` catalog builder and re-upload to R2
+**Fix (pick based on COG inspection):**
+A) If COG nodata is NaN: set `nodata: nan` in sourceParams (most likely for ERA5)
+B) If COG nodata is -9999: set `nodata: -9999` in sourceParams
+C) If COG uses 0 for both no-rain and no-data (ambiguous): reprocess COGs
+   in `cheias-pt-stac` with a proper nodata sentinel (NaN) and re-upload to R2.
+   This is the nuclear option but the correct long-term fix.
+
+`return_mask: true` stays — it's what makes the nodata→transparent pipeline work.
+The issue is purely the nodata VALUE, not the masking mechanism.
 
 **File:** `datasets/precipitation.data.mdx`
 
