@@ -185,34 +185,56 @@ Precipitation compare:
 **Symptom:** The cumulative deaths chart (fatality-timeline.csv) is
 inappropriate for the story's tone and adds no analytical value.
 
-**Replacement:** Economic/infrastructure impact timeline or
-agricultural damage summary. Options ranked by impact:
+**FIRST: Read the existing narrative research.** The replacement must
+be grounded in the actual researched data, not invented. Consult:
 
-**Option A — Storm Impact Summary (horizontal bar chart):**
-Create `stories/media/floods/storm-impact-summary.csv`:
-```csv
-Storm,Evacuated,Without_Power,Agricultural_ha
-Kristin,0,1000000,50000
-Leonardo,1100,200000,80000
-Marta,11000,500000,96000
+1. `~/Documents/dev/cheias-pt/tasks/flood-research.md` — comprehensive
+   timeline with verified numbers per storm (evacuations, wind, deaths,
+   agricultural impact, infrastructure damage, rescue deployment).
+   Key sections: "HUMAN IMPACT" (line ~246), "GEOGRAPHIC IMPACT" (~219),
+   storm-by-storm breakdowns with verified figures.
+
+2. `~/Documents/dev/cheias-pt/tasks/cheias-content-gaps.md` — identifies
+   what data is available and what storytelling gaps exist.
+
+3. `~/Documents/dev/cheias-pt/tasks/data-inventory.md` — full data asset
+   inventory with exact feature counts and coverage areas.
+
+4. `~/.vaults/root/2nd-Brain/Projects/cheias-pt/cheias-pt.md` — project
+   context, v0 shipping status, and editorial direction.
+
+**Replacement options (use ONLY verified data from the above sources):**
+
+**Option A — Storm Impact Summary (grouped bar chart):**
+Build CSV from the storm table in `flood-research.md` (line ~150):
 ```
-Use a grouped bar chart with `idKey='Storm'` showing the three
-dimensions of impact per storm. This is more analytical and
-demonstrates compound escalation.
+| Storm   | Deaths | Evacuations | Key Impact                    |
+| Kristin | 14     | —           | 1M without power, 209 km/h    |
+| Leonardo| 2      | 1,100       | Sado/Lis overflow             |
+| Marta   | 2      | 11,000      | 26,500 rescuers, ag. losses   |
+```
+Chart dimensions: Evacuations + Rescuers + Power Outages per storm.
+Shows compound escalation — each storm hit harder infrastructure.
 
 **Option B — Evacuation Timeline (line chart):**
-Create `stories/media/floods/evacuation-timeline.csv` with
-cumulative evacuations over time — shows the escalating humanitarian
-response across the three storms.
+Build from `flood-research.md` evacuations data:
+- Kristin: negligible evacuations (wind damage, not flooding)
+- Leonardo: 1,100 evacuated (Feb 5-6, Alcácer do Sal, Leiria)
+- Mondego breach: 3,000 evacuated (Feb 11, Coimbra area)
+- Marta: 11,000 evacuated (Feb 6-8, peak response)
 
-**Option C — Simply remove the chart and expand the prose block
-with a more detailed written account of impacts.**
+**Option C — Expand prose with researched narrative.**
+Pull survivor accounts, emergency response scale, and infrastructure
+failure details from `flood-research.md`. The prose already covers
+the A1 collapse — extend with Mondego breach, Sado flooding,
+agricultural losses in the Lezíria do Tejo belt.
 
-Pick the option that creates the strongest visual narrative
-without being insensitive. Replace both the Chart block AND caption.
+Pick the option that creates the strongest visual narrative.
+Cross-reference ALL numbers against `flood-research.md` — do NOT
+invent statistics. Replace both the Chart block AND caption.
 
 **File:** `stories/winter-2025-26-floods.stories.mdx` +
-`stories/media/floods/` (new CSV)
+`stories/media/floods/` (new CSV if Option A or B)
 
 ---
 
@@ -222,65 +244,54 @@ without being insensitive. Replace both the Chart block AND caption.
 and the compare slider, but NO flood polygons are visible on either
 side. The map is empty.
 
-**Investigation chain:**
-1. Confirm tipg vector tiles serve with `source-layer: default`:
-```bash
-curl -s "https://api.cheias.pt/vector/collections/public.flood_extent_emsr864/tiles/WebMercatorQuad/8/121/97" \
-  -o /tmp/tile.pbf && python3 -c "
-import re
-with open('/tmp/tile.pbf','rb') as f:
-    data = f.read(200)
-    strings = re.findall(r'[\x20-\x7e]{3,}', data.decode('latin-1'))
-    print(f'Source layers: {strings}')
-"
-```
-(Already confirmed: source-layer is `default`, tile is 906KB)
+### What the documentation says
 
-2. Check if VEDA-UI `VectorTimeseries` component discovers the tipg endpoint:
-```
-# The component at:
-# .veda/ui/packages/veda-ui/src/components/common/map/style-generators/vector-timeseries.tsx
-# fetches {STAC_ENDPOINT}/collections/{stacCol}
-# then looks for link with rel=external
-# then builds tile URL: {external_href}/tiles/WebMercatorQuad/{z}/{x}/{y}
-```
+**Read these FIRST before touching any code:**
 
-3. Test the actual tile URL chain:
-```bash
-# Does STAC return the external link?
-curl -s "https://api.cheias.pt/collections/flood-extent-emsr864" | \
-  python3 -c "import json,sys; d=json.load(sys.stdin); print([l for l in d['links'] if l['rel']=='external'])"
-# Expected: href=https://api.cheias.pt/vector/collections/public.flood_extent_emsr864
+1. **`docs/content/frontmatter/layer.md`** (in `.veda/ui/`):
+   - `type: raster | vector | wms | wmts`
+   - "Vector datasets should be in vector tiles format with a
+     source layer named `default`. It is currently not possible to
+     customize the style of the dataset's features."
+   - The STAC collection must have a link with `rel: external`
+     pointing to the vector tile endpoint.
+   - `stacCol` must match the STAC collection id.
 
-# Does tipg return the tile endpoint?
-curl -s "https://api.cheias.pt/vector/collections/public.flood_extent_emsr864/tiles" | python3 -c "import json,sys; print(json.dumps(json.load(sys.stdin),indent=2)[:500])"
-```
+2. **`docs/content/MDX_BLOCKS.md`** — Map block props:
+   `datasetId`, `layerId`, `dateTime`, `compareDateTime`, `zoom`,
+   `center`, `basemapId`. The `dateTime` prop is **optional** —
+   "When omitted, the very first available dateTime for the dataset
+   will be displayed."
 
-4. Open browser DevTools on localhost:9000, navigate to Peak Flood Extent,
-   check Network tab for vector tile requests (pbf/mvt). Check Console for
-   errors. This is the most reliable debugging approach.
+3. **`docs/content/frontmatter/layer.md` → Compare section:**
+   The compare layer can reference another dataset via
+   `compare.datasetId` + `compare.layerId`.
 
-**Likely root causes (investigate in order):**
-A) The `VectorTimeseries` component may require a temporal item in the STAC
-   collection. The flood-extent-emsr864 collection has NO items (it's a
-   static vector dataset). VEDA-UI may refuse to render if it can't find
-   a matching datetime item. Fix: add a dummy STAC item.
+### What's already confirmed working
 
-B) The compare config references `flood-extent-emsr861` as the compare
-   layer. If that dataset's STAC collection also has no items, the compare
-   initialization may fail silently and prevent both layers from rendering.
+- STAC collections exist: `flood-extent-emsr864` and `flood-extent-emsr861`
+- Both have `rel: external` links pointing to tipg
+- Vector tiles serve correctly (906KB at z8 for EMSR864)
+- Source-layer name is `default` (matches VEDA-UI expectation)
+- Dataset MDX files use `type: vector` with correct `stacCol`
 
-C) The `zoom` is set to 8 and `zoomExtent` starts at 6. At z8 the
-   tiles should load. But if the map's initial viewport is wrong
-   (center `[-8.9, 39.7]` is the Tejo valley, correct for Coimbra/Salvaterra),
-   the tiles might be outside the viewport.
+### Likely root cause
 
-**Fix (for cause A — most likely):**
-Create dummy STAC items for both flood-extent collections:
+**VEDA-UI requires at least one STAC item with a datetime to render
+a layer.** The flood-extent collections currently have ZERO items —
+they only have the collection-level metadata. When VEDA-UI queries
+`/collections/{stacCol}/items` and gets an empty result, it has no
+datetime to work with and silently fails to render.
+
+The docs say `dateTime` is optional in the Map block ("When omitted,
+the very first available dateTime for the dataset will be displayed")
+— but there IS no "first available dateTime" because there are no items.
+
+### Fix: Add STAC items to both flood-extent collections
+
 ```bash
 export DATABASE_URL="..." # set from env
 
-# Create minimal STAC items
 python3 -c "
 import json
 for coll, date in [('flood-extent-emsr864', '2026-02-08'), ('flood-extent-emsr861', '2026-01-30')]:
@@ -304,11 +315,32 @@ pypgstac load items /tmp/flood-extent-emsr864-item.json --dsn "\$DATABASE_URL" -
 pypgstac load items /tmp/flood-extent-emsr861-item.json --dsn "\$DATABASE_URL" --method upsert
 ```
 
-**3D Terrain — Post-v0 unless quick:**
-VEDA-UI doesn't expose a terrain prop. Options:
-- Create a custom Mapbox Studio style with terrain enabled and set via `MAPBOX_STYLE_URL`
-- OR patch `block-map.tsx` to add terrain on satellite basemap (submodule edit)
-Both are invasive for v0. Ship with flat satellite first, add terrain post-demo.
+### Verify after fix
+
+```bash
+# Items exist
+curl -s "https://api.cheias.pt/collections/flood-extent-emsr864/items" | \
+  python3 -c "import json,sys; d=json.load(sys.stdin); print(f'Items: {len(d.get("features",[]))}')"
+curl -s "https://api.cheias.pt/collections/flood-extent-emsr861/items" | \
+  python3 -c "import json,sys; d=json.load(sys.stdin); print(f'Items: {len(d.get("features",[]))}')"
+```
+
+Then rebuild and visually confirm flood polygons appear on both sides
+of the compare slider at the Peak Flood Extent section.
+
+### If items don't fix it — fallback investigation
+
+Only if adding items doesn't work, THEN inspect the source:
+- `.veda/ui/packages/veda-ui/src/components/common/map/style-generators/vector-timeseries.tsx`
+- Check DevTools Network tab for tile requests (pbf/mvt)
+- Check Console for errors
+
+### 3D Terrain — Post-v0
+
+VEDA-UI doesn't expose a terrain prop. Options for later:
+- Custom Mapbox Studio style with terrain enabled → `MAPBOX_STYLE_URL`
+- OR patch `block-map.tsx` (submodule edit)
+Ship with flat satellite for now, add terrain post-demo.
 
 **File:** `datasets/flood-extent.data.mdx`, `datasets/flood-extent-emsr861.data.mdx`,
 `stories/winter-2025-26-floods.stories.mdx`
