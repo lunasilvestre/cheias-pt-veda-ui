@@ -278,7 +278,9 @@ layers:
   vector tiles must have a source-layer named `default` inside the MVT/PBF
   (tipg does this automatically). The `name` field is what shows in the legend.
 - NO `sourceParams` — that's a raster concept; vector styling is hardcoded in VEDA-UI
-  (`fill-color: theme.color.infographicB`, `line-color: theme.color.danger-300`)
+- **Style is NOT customizable** (per docs). All vector polygons render with
+  `theme.color.infographicB` (`#6138BE` purple) fill and `theme.color.danger`
+  (`#FC3D21` red) line. Set legend colors to `#6138BE` to match reality.
 - `stacCol` must match the STAC collection id
 - `zoomExtent` controls min/max zoom for tile requests
 
