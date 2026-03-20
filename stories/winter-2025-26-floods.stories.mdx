@@ -59,7 +59,7 @@ taxonomy:
   </Chapter>
 
   <Chapter
-    center={[-8.5, 40]}
+    center={[-11, 39.5]}
     zoom={6}
     datasetId='precipitation-daily'
     layerId='precipitation-daily'
@@ -71,8 +71,8 @@ taxonomy:
   </Chapter>
 
   <Chapter
-    center={[-9, 39]}
-    zoom={7}
+    center={[-11, 40.5]}
+    zoom={6}
     datasetId='soil-moisture-daily'
     layerId='soil-moisture-daily'
     datetime='2026-01-27'
@@ -83,7 +83,7 @@ taxonomy:
   </Chapter>
 
   <Chapter
-    center={[-9, 39]}
+    center={[-11, 40.5]}
     zoom={7}
     datasetId='precondition'
     layerId='precondition'
@@ -99,7 +99,7 @@ taxonomy:
 
 ## Before vs. After: The Ground Saturates
 
-<Block type='wide'>
+<Block type='full'>
   <Figure>
     <Map
       datasetId='soil-moisture-daily'
@@ -107,8 +107,8 @@ taxonomy:
       dateTime='2025-12-15'
       compareDateTime='2026-02-08'
       compareLabel='Baseline (Dec 15) vs Peak Flood (Feb 8)'
-      zoom={7}
-      center={[-9, 39]}
+      zoom={6}
+      center={[-8, 39.5]}
     />
     <Caption
       attrAuthor='ERA5-Land / Open-Meteo'
@@ -117,9 +117,14 @@ taxonomy:
       Soil moisture comparison: December 15 (pre-storm baseline) vs February 8 (peak flood). The dramatic shift from dry to saturated across the Tejo and Mondego basins shows why every raindrop became runoff.
     </Caption>
   </Figure>
+  <Prose>
+Soil moisture comparison: December 15 (pre-storm baseline) vs February 8 (peak flood). The dramatic shift from dry to saturated across the Tejo and Mondego basins shows why every raindrop became runoff.
+  </Prose>
 </Block>
-
-<Block type='wide'>
+<Block type='full'>
+  <Prose>
+  Two storms, different signatures: Kristin (Jan 28) brought intense wind-driven rainfall concentrated in Leiria/Coimbra. Leonardo (Feb 6) spread persistent rain across the entire Tejo basin. Together they kept rivers elevated for 10+ consecutive days.
+  </Prose>
   <Figure>
     <Map
       datasetId='precipitation-daily'
@@ -127,8 +132,8 @@ taxonomy:
       dateTime='2026-01-28'
       compareDateTime='2026-02-06'
       compareLabel='Kristin (Jan 28) vs Leonardo (Feb 6)'
-      zoom={6}
-      center={[-9, 39.5]}
+      zoom={7}
+      center={[-9, 40.5]}
     />
     <Caption
       attrAuthor='ERA5 / Open-Meteo'
