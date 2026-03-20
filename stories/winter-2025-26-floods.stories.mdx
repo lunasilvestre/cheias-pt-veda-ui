@@ -104,9 +104,9 @@ taxonomy:
     <Map
       datasetId='soil-moisture-daily'
       layerId='soil-moisture-daily'
-      dateTime='2026-02-08'
-      compareDateTime='2025-12-15'
-      compareLabel='Peak Flood (Feb 8) vs Baseline (Dec 15)'
+      dateTime='2025-12-15'
+      compareDateTime='2026-02-08'
+      compareLabel='Baseline (Dec 15) vs Peak Flood (Feb 8)'
       zoom={7}
       center={[-9, 39]}
     />
@@ -124,9 +124,9 @@ taxonomy:
     <Map
       datasetId='precipitation-daily'
       layerId='precipitation-daily'
-      dateTime='2026-02-06'
-      compareDateTime='2026-01-28'
-      compareLabel='Leonardo (Feb 6) vs Kristin (Jan 28)'
+      dateTime='2026-01-28'
+      compareDateTime='2026-02-06'
+      compareLabel='Kristin (Jan 28) vs Leonardo (Feb 6)'
       zoom={6}
       center={[-9, 39.5]}
     />
@@ -209,24 +209,16 @@ taxonomy:
   </Prose>
 </Block>
 
-<Block type='wide'>
-  <Figure>
-    <Chart
-      dataPath={new URL('./media/floods/fatality-timeline.csv', import.meta.url).href}
-      idKey='Event'
-      xKey='Date'
-      yKey='Cumulative'
-      xAxisLabel='Date (Jan 28 – Feb 8)'
-      yAxisLabel='Cumulative Deaths'
-      dateFormat='%Y-%m-%d'
-      altTitle='Cumulative Fatalities: Winter 2025–26 Storms'
-      altDesc='18 deaths across three storms: 14 from Kristin (falling trees, floodwater, structural collapse), 2 from Leonardo, 2 from Marta'
-      colors={['#8b0000']}
-    />
-    <Caption>
-      Eighteen confirmed deaths. Kristin accounted for 14 — mostly from falling trees on saturated ground and floodwater. One million people lost power for up to 15 days. Three municipalities postponed elections because shelters took priority over polling stations.
-    </Caption>
-  </Figure>
+<Block>
+  <Prose>
+    ### The Scale of Response
+
+    The compound disaster triggered Portugal's largest emergency mobilization in decades. Storm Kristin alone left one million people without power — some for up to 15 days. As Leonardo and Marta followed, the response escalated: 1,100 evacuated during Leonardo (Alcácer do Sal, Leiria), then 11,000+ during Marta as rivers stayed above flood stage. When the Mondego dike ruptured on February 11, 3,000 more were evacuated from the Coimbra area.
+
+    At peak deployment, 26,500 rescuers were in the field — Proteção Civil, military, and volunteer firefighters working across 69 municipalities under a state of calamity. Three municipalities postponed Sunday elections because shelters had taken priority over polling stations.
+
+    The government announced a €2.5 billion emergency package: housing reconstruction, €750 million for agricultural losses across the Lezíria do Tejo and Baixo Mondego, and A1 motorway repair. Against €4 billion in total documented damage, the gap remained significant — uninsured losses, displaced agricultural workers, and communities waiting months for permanent housing.
+  </Prose>
 </Block>
 
 ---
@@ -299,7 +291,7 @@ taxonomy:
       layerId='flood-extent-emsr864'
       dateTime='2026-02-08'
       compareDateTime='2026-01-30'
-      compareLabel='Kristin (EMSR861) vs Combined (EMSR864)'
+      compareLabel='Combined (EMSR864) vs Kristin (EMSR861)'
       zoom={8}
       center={[-8.9, 39.7]}
       basemapId='satellite'
@@ -308,7 +300,7 @@ taxonomy:
       attrAuthor='Copernicus EMS (EMSR861 + EMSR864)'
       attrUrl='https://mapping.emergency.copernicus.eu/activations/EMSR864/'
     >
-      Drag the slider to compare: left shows Storm Kristin flood polygons (EMSR861, 506 features, Coimbra region), right shows the combined flood extent after all three storms (EMSR864, 14,747 features, national). Both vector layers rendered over satellite imagery. Zoom in to explore individual AOIs — Salvaterra de Magos (49,164 ha), Coimbra, Aveiro, Alcácer do Sal.
+      Drag the slider to compare: left shows the combined flood extent after all three storms (EMSR864, 14,747 features, national), right shows Storm Kristin flood polygons (EMSR861, 506 features, Coimbra region). Both vector layers rendered over satellite imagery. Zoom in to explore individual AOIs — Salvaterra de Magos (49,164 ha), Coimbra, Aveiro, Alcácer do Sal.
     </Caption>
   </Figure>
 </Block>
