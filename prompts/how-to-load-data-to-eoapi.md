@@ -274,6 +274,9 @@ layers:
 
 **Vector dataset MDX notes:**
 - `type: vector` — triggers VectorTimeseries component
+- `name` is a UI display label — do NOT set it to `default`. The docs say
+  vector tiles must have a source-layer named `default` inside the MVT/PBF
+  (tipg does this automatically). The `name` field is what shows in the legend.
 - NO `sourceParams` — that's a raster concept; vector styling is hardcoded in VEDA-UI
   (`fill-color: theme.color.infographicB`, `line-color: theme.color.danger-300`)
 - `stacCol` must match the STAC collection id
