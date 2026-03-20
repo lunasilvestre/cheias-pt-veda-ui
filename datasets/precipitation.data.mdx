@@ -31,11 +31,20 @@ layers:
       assets: data
       colormap_name: blues
       nodata: 0
+      return_mask: true
       resampling: bilinear
       bidx: 1
       rescale:
         - 0
         - 80
+    compare:
+      datasetId: precipitation-daily
+      layerId: precipitation-daily
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+          if (!datetime || !compareDatetime) return '';
+          return `${dateFns.format(datetime, 'MMM d, yyyy')} vs ${dateFns.format(compareDatetime, 'MMM d, yyyy')}`;
+        }
     legend:
       type: gradient
       min: '0 mm'

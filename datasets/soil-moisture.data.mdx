@@ -31,21 +31,30 @@ layers:
       assets: data
       colormap_name: viridis
       nodata: -9999
+      return_mask: true
       resampling: bilinear
       bidx: 1
       rescale:
         - 0.05
         - 0.50
+    compare:
+      datasetId: soil-moisture-daily
+      layerId: soil-moisture-daily
+      mapLabel: |
+        ::js ({ dateFns, datetime, compareDatetime }) => {
+          if (!datetime || !compareDatetime) return '';
+          return `${dateFns.format(datetime, 'MMM d, yyyy')} vs ${dateFns.format(compareDatetime, 'MMM d, yyyy')}`;
+        }
     legend:
       type: gradient
       min: 'Dry (0.05)'
       max: 'Saturated (0.50)'
       stops:
-        - '#f5e6d3'
-        - '#a6611a'
-        - '#7fb3d5'
-        - '#1b4965'
-        - '#0a2840'
+        - '#440154'
+        - '#31688e'
+        - '#21918c'
+        - '#5ec962'
+        - '#fde725'
     metadata:
       source: Open-Meteo / ERA5-Land
 ---
@@ -56,6 +65,6 @@ layers:
 
 Soil moisture is a critical precursor to flooding. When soils are already saturated and rain is forecasted, flood risk increases dramatically because rainfall flows overland directly into rivers rather than being absorbed.
 
-Portugal's soils entered January 2026 already near saturation (0.42 m3/m3 average) after December delivered 222% of normal rainfall. This left the landscape primed for catastrophic flooding.
+Portugal's soils entered January 2026 already near saturation (0.42 m³/m³ average) after December delivered 222% of normal rainfall. This left the landscape primed for catastrophic flooding.
 </Prose>
 </Block>

@@ -1,0 +1,45 @@
+---
+id: flood-extent-emsr861
+name: 'Flood Extent — Storm Kristin (EMSR861)'
+description: 'Flood polygons from Copernicus EMS activation EMSR861 during Storm Kristin, Coimbra region, Jan 2026.'
+media:
+  src: ::file media/flood-extent-cover.png
+  alt: 'Flooded areas mapped by Copernicus EMS in the Coimbra region'
+  author:
+    name: Copernicus EMS
+    url: https://emergency.copernicus.eu/
+taxonomy:
+  - name: Topics
+    values:
+      - Flood Monitoring
+      - Emergency Response
+  - name: Source
+    values:
+      - Sentinel-1 SAR
+
+layers:
+  - id: flood-extent-emsr861
+    stacCol: flood-extent-emsr861
+    name: EMSR861 Flood Extent (Kristin)
+    type: vector
+    description: '506 flood delineation polygons in the Coimbra region from Storm Kristin.'
+    initialDatetime: newest
+    zoomExtent:
+      - 6
+      - 20
+    sourceParams:
+      assets: default
+    legend:
+      type: categorical
+      stops:
+        - color: '#e74c3c'
+          label: 'Kristin Flood Extent'
+---
+
+<Block>
+<Prose>
+## Storm Kristin — EMSR861
+
+The Copernicus Emergency Management Service activated EMSR861 in response to Storm Kristin (Jan 28–30, 2026). Sentinel-1 SAR imagery was used to map 506 flood polygons across the Coimbra region, where the Mondego river breached its banks.
+</Prose>
+</Block>

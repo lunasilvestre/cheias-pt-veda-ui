@@ -273,29 +273,6 @@ taxonomy:
   </Figure>
 </Block>
 
----
-
-## Satellite Evidence
-
-<Block type='full'>
-  <Figure>
-    <CompareImage
-      leftImageSrc={new URL('./media/floods/salvaterra-before-20260106.jpg', import.meta.url).href}
-      leftImageAlt='Salvaterra de Magos floodplain, January 6, 2026 — dry agricultural fields'
-      leftImageLabel='Jan 6 — Before Floods'
-      rightImageSrc={new URL('./media/floods/salvaterra-after-20260220.jpg', import.meta.url).href}
-      rightImageAlt='Salvaterra de Magos floodplain, February 20, 2026 — peak inundation'
-      rightImageLabel='Feb 20 — Peak Flood'
-    />
-    <Caption
-      attrAuthor='Copernicus Sentinel-2 L2A'
-      attrUrl='https://sentinels.copernicus.eu/'
-    >
-      Salvaterra de Magos (Tejo basin): 49,164 hectares inundated — an area larger than Lisbon. Drag the slider to compare pre-storm agricultural fields with peak flood extent. Sentinel-2 true-color composite.
-    </Caption>
-  </Figure>
-</Block>
-
 <Block type='wide'>
   <Figure>
     <Image
@@ -318,17 +295,20 @@ taxonomy:
 <Block type='full'>
   <Figure>
     <Map
-      datasetId='soil-moisture-daily'
-      layerId='soil-moisture-daily'
+      datasetId='flood-extent-emsr864'
+      layerId='flood-extent-emsr864'
       dateTime='2026-02-08'
-      zoom={7}
-      center={[-9, 39]}
+      compareDateTime='2026-01-30'
+      compareLabel='Kristin (EMSR861) vs Combined (EMSR864)'
+      zoom={8}
+      center={[-8.9, 39.7]}
+      basemapId='satellite'
     />
     <Caption
-      attrAuthor='Copernicus EMS (EMSR864) / ERA5-Land'
+      attrAuthor='Copernicus EMS (EMSR861 + EMSR864)'
       attrUrl='https://mapping.emergency.copernicus.eu/activations/EMSR864/'
     >
-      February 8, 2026: 226,764 hectares of inundation across Portugal. The Copernicus Emergency Management Service (EMSR864) provided near-daily SAR monitoring through cloud cover.
+      Drag the slider to compare: left shows Storm Kristin flood polygons (EMSR861, 506 features, Coimbra region), right shows the combined flood extent after all three storms (EMSR864, 14,747 features, national). Both vector layers rendered over satellite imagery. Zoom in to explore individual AOIs — Salvaterra de Magos (49,164 ha), Coimbra, Aveiro, Alcácer do Sal.
     </Caption>
   </Figure>
 </Block>
@@ -355,13 +335,13 @@ taxonomy:
 
 <Block>
   <Prose>
-  **Satellite:** Copernicus Sentinel-1 SAR (EMSR864 flood mapping), Sentinel-2 L2A (true-color), EUMETSAT Meteosat IR/VIS (storm tracking), NASA GPM IMERG (precipitation).
+  **Satellite:** Copernicus Sentinel-1 SAR (EMSR861 + EMSR864 flood mapping), NASA GPM IMERG (precipitation).
 
   **Hydrological:** SNIRH (Portuguese national gauge network), GloFAS/Open-Meteo (global flood model).
 
   **Meteorological:** ERA5/ERA5-Land (precipitation, soil moisture, wind, MSLP, SST), NOAA OISST v2.1 (SST anomaly), IPMA (Portuguese climate monitoring).
 
-  **Attribution:** World Weather Attribution (climate attribution study), Portuguese Government (emergency declarations), Copernicus Emergency Management Service (EMSR864).
+  **Attribution:** World Weather Attribution (climate attribution study), Portuguese Government (emergency declarations), Copernicus Emergency Management Service (EMSR861, EMSR864).
 
   All data processed and served via STAC API at [api.cheias.pt](https://api.cheias.pt) with Cloud Optimized GeoTIFFs on Cloudflare R2 at [data.cheias.pt](https://data.cheias.pt).
 
