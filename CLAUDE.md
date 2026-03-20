@@ -39,7 +39,6 @@ cheias-pt/                  ← Research repo (data, notebooks, scripts, design 
 | **COGs** | `data.cheias.pt` | Cloudflare R2 bucket | Cloudflare |
 | **Frontend** | `cheias.pt` | VEDA-UI static site | Vercel (pending) |
 
-REDACTED
 
 ### eoAPI Routing (nginx on Sliplane)
 
