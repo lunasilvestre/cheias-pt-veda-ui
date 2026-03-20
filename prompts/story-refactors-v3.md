@@ -388,7 +388,7 @@ rm -rf .parcel-cache && yarn --ignore-engines clean && yarn --ignore-engines ser
 
 | Bug | What to check | Pass criteria |
 |-----|--------------|---------------|
-| 1 | Precipitation scrollytelling chapter (Jan 28) | Portugal shows continuous gradient, 0mm = lightest blue (NOT transparent) |
+| 1 | Precipitation scrollytelling chapter (Jan 28) | Portugal shows precipitation gradient; ocean and Spain are TRANSPARENT (not white) |
 | 2 | Soil moisture scrollytelling chapter (Jan 27) | All of Portugal colored, nodata areas (ocean/Spain) transparent, colors visible against basemap |
 | 3 | Precondition scrollytelling chapter (Jan 27) | Colored overlay visible over Portugal's landmass |
 | 4 | Soil moisture compare map | LEFT = Dec 15 (drier), RIGHT = Feb 8 (saturated). Label matches |
