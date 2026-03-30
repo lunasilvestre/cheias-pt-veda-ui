@@ -109,7 +109,7 @@ datasets/flood-extent.data.mdx      ← placeholder (no STAC collection yet)
 | storm-comparison.csv | Data | Markdown table (NOT Table component) |
 | rainfall-anomaly.csv | Data | Reference |
 
-### Flood Extent Data (`~/Documents/dev/cheias-pt/data/flood-extent/`)
+### Flood Extent Data (in [cheias-pt](https://github.com/lunasilvestre/cheias-pt) research repo)
 
 | File | Size | Features | Description |
 |------|------|----------|-------------|
@@ -129,7 +129,7 @@ datasets/flood-extent.data.mdx      ← placeholder (no STAC collection yet)
 
 ### Sentinel-2 Before/After (needs JPEG conversion)
 
-Source GeoTIFFs at `~/Documents/dev/cheias-pt/data/sentinel-2/`:
+Source GeoTIFFs in the `cheias-pt` research repo (`data/sentinel-2/`):
 - `salvaterra-before-20260106.tif` (31 MB) — pre-flood RGB
 - `salvaterra-after-20260220.tif` (28 MB) — post-flood RGB
 - `salvaterra-ndwi-before-20260106.tif` — NDWI index
@@ -246,7 +246,7 @@ Available via `projectionId` in Chapter or Map:
 
 **Env vars for Vercel dashboard:**
 ```
-MAPBOX_TOKEN=pk.eyJ1IjoibHVuYXNpbHZlc3RyZSIsImEiOiJjbW1tYjQ0dWEwaGZqMnFzN2VyeGgwMmFnIn0.-H5plVRcyzeXJbW4dwzcUw
+MAPBOX_TOKEN=<your-mapbox-public-token>
 API_STAC_ENDPOINT=https://api.cheias.pt
 API_RASTER_ENDPOINT=https://api.cheias.pt/raster
 APP_TITLE=cheias.pt
@@ -263,7 +263,7 @@ MAPBOX_STYLE_URL=mapbox://styles/mapbox/dark-v11
 6. **CompareImage** — Sentinel-2 before/after (if JPEGs converted)
 7. **Prose** — recovery, climate attribution
 
-Running: `prompts/story-refactors-v2.md` (Claude Code on atlas)
+Running: `prompts/story-refactors-v2.md` (Claude Code)
 
 ## Key Decisions Log
 
