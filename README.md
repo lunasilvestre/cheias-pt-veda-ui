@@ -1,26 +1,81 @@
-# Welcome to Veda
+# cheias.pt — VEDA Dashboard Build
 
-![VEDA logo](./static/graphics/nasa-veda-logo-pos.svg)
+The production frontend for [cheias.pt](https://cheias.pt), built on NASA IMPACT's [VEDA Dashboard](https://github.com/NASA-IMPACT/veda-ui) framework.
 
-​VEDA is a dashboard to explore data.
+A scrollytelling data story about Portugal's Winter 2025–26 flood crisis — documenting how sequential storms on saturated soils created the country's worst flood disaster in a generation.
 
-VEDA is organized around datasets and data stories.
-A Dataset represents a piece of geo-referenced data displayed as a set of related layers on a map.  
-Data Stories are long form pieces of content that tell a story about some interesting portion of the data.
+## Live
 
-## Getting started
+**[cheias.pt](https://cheias.pt)** — deployed on Vercel
 
-1) Check [SETUP](./docs/SETUP.md) to see how you can run the project locally. (You'll need this to preview content.)
-2) Alternatively, you can run the project using Github Codespaces. Check the [Codespaces guide](./docs/GH_CODESPACES.md) to know how.
+## Stack
 
-If you plan to do development on `veda-config` or update the `veda-ui` version check [DEVELOPMENT](./docs/DEVELOPMENT.md).
+| Layer | Technology |
+|-------|-----------|
+| Framework | VEDA Dashboard (veda-ui v6.20.6) — Parcel + React + MapboxGL |
+| Data API | eoAPI (stac-fastapi-pgstac + titiler-pgstac + tipg) on Sliplane |
+| Database | Neon (PostgreSQL + PostGIS + pgstac) |
+| Raster storage | Cloud-Optimized GeoTIFFs on Cloudflare R2 |
+| Deployment | Vercel |
+| Domain | cheias.pt (Cloudflare DNS) |
 
-## Creating content and configuring VEDA
+## Architecture
 
-The configuration and content options for VEDA will depend on the `veda-ui` (the actual interface code) version that `veda-config` is running.
+```
+Browser (cheias.pt)
+    ↓
+VEDA-UI → STAC search (api.cheias.pt)
+    ↓
+STAC returns COG asset URLs (data.cheias.pt)
+    ↓
+titiler-pgstac renders tiles on the fly
+    ↓
+MapboxGL renders in browser
+```
 
-**The documentation for the current version can be viewed at [v2.0.0 of veda-ui](https://github.com/NASA-IMPACT/veda-ui/blob/v2.0.0/README.md).
+Vector flood extent served via tipg (OGC vector tiles from PostGIS).
+
+## Data
+
+9 STAC collections covering Dec 2025 – Feb 2026:
+
+| Collection | Source | Type |
+|-----------|--------|------|
+| precipitation-daily | ERA5 reanalysis | raster |
+| soil-moisture-daily | ERA5-Land | raster |
+| sst-anomaly | NOAA OISST v2.1 | raster |
+| ivt | ERA5 (integrated vapor transport) | raster |
+| mslp | ERA5 (mean sea level pressure) | raster |
+| precondition | Compound flood risk index | raster |
+| flood-extent-emsr861 | Copernicus EMS (Coimbra) | vector |
+| flood-extent-emsr864 | Copernicus EMS (national) | vector |
+
+## Story
+
+One scrollytelling story (`stories/winter-2025-26-floods.stories.mdx`) with 9 chapters covering SST anomalies → soil saturation → atmospheric rivers → three storms → peak flood extent → climate attribution → recovery.
+
+## Development
+
+```bash
+# Prerequisites: Node 20, yarn via corepack
+corepack enable
+
+# Install
+yarn --ignore-engines
+cd .veda/ui && yarn --ignore-engines && cd ../..
+
+# Dev server
+node .veda/veda serve
+# → localhost:9000
+```
+
+Requires a `.env.local` file with a Mapbox token (see `.env.local-sample`).
+
+## Related
+
+- [cheias-pt](https://github.com/lunasilvestre/cheias-pt) — Custom Vite + MapLibre + deck.gl implementation (original build with GSAP animations)
+- [VEDA Dashboard](https://github.com/NASA-IMPACT/veda-ui) — The upstream framework
 
 ## License
-This project is licensed under **Apache 2**, see the [LICENSE](LICENSE) file for more details.
 
+Apache 2.0 (inherits from veda-config-template)
