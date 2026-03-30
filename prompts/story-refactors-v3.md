@@ -218,8 +218,7 @@ be grounded in the actual researched data, not invented. Consult:
 3. `~/Documents/dev/cheias-pt/tasks/data-inventory.md` — full data asset
    inventory with exact feature counts and coverage areas.
 
-4. `~/.vaults/root/2nd-Brain/Projects/cheias-pt/cheias-pt.md` — project
-   context, v0 shipping status, and editorial direction.
+4. Project context and editorial direction (see cheias-pt repo CLAUDE.md).
 
 **Replacement options (use ONLY verified data from the above sources):**
 
