@@ -32,7 +32,7 @@ pip install pypgstac --break-system-packages
 sudo apt install gdal-bin  # for ogr2ogr
 
 # Connection (set from env, NEVER commit)
-export DATABASE_URL="postgresql://neondb_owner:<password>@ep-holy-recipe-alf53rxj.c-3.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+export DATABASE_URL="postgresql://neondb_owner:<password>@<your-neon-endpoint>.neon.tech/neondb?sslmode=require"
 ```
 
 ---
