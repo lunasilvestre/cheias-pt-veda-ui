@@ -2,8 +2,8 @@
 
 ## Mission
 
-Portuguese flood geo-narrative about the Winter 2025-26 crisis, built on NASA/DevSeed's
-VEDA-UI framework. Portfolio piece targeting Development Seed (Lisbon).
+Portuguese flood geo-narrative about the Winter 2025-26 crisis, built on NASA IMPACT's
+VEDA Dashboard framework. Open-source civic tech for flood monitoring and climate attribution.
 
 ## Architecture (Production, 2026-03-19)
 
